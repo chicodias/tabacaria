@@ -22,6 +22,7 @@ No terminal, digite os comandos:
 ## Casos de teste
 
 Utilize os comandos abaixo para rodar os testes
+
 `make run <casos_teste/1.in`
 
 `make run <casos_teste/2.in`
