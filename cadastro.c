@@ -80,9 +80,6 @@ produto * cad_produto (produto * estoque)
         printf("\n %li %f %d\n", estoque[i].codigo, estoque[i].preco, estoque[i].armazenamento);
         i++;
     }       
-    imprime_estoque(estoque);
-    removeProduto(estoque, 321312102);
-    imprime_estoque(estoque);
     printf("Total de Cadastros no estoque: %d.\n Voltando ao menu.\n",tamanho_estoque());
  
  return(estoque);

@@ -33,7 +33,10 @@ int main()
             case 1:
                 cadastro (&estoque, &fn);
             break;
-
+            case 2:
+                printf("\n *** Produtos atualmente em estoque:\n");
+                imprime_estoque(estoque);
+            break;
             case 3:
                 vendidos = venda (estoque, vendidos);
             break;
@@ -49,7 +52,7 @@ int main()
                 printf("Opção inválida.\n");
             break;
         }
-        imprime_estoque(estoque);
+    
     }
     // desaloca os vetores em memória da aplicação
     //free(estoque);

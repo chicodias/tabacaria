@@ -63,5 +63,4 @@ int tamanho_estoque();
 int tamanho_fornecedores();
 
 
-
 #endif //cadastro.h
