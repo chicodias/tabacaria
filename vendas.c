@@ -10,19 +10,19 @@
 int TAM_MAX_VENDAS = 0;
 
 // Realiza a venda de uma quantidade de produtos 
-void venda (produto * estoque, produto * vendidos)
+produto * venda (produto * estoque, produto * vendidos)
 {
     int i, quantidade;
     produto prod;
     long int codigo;
 
     printf("Digite o numero de vendas: \n");
-    scanf("%d ", &quantidade);
+    scanf("%d", &quantidade);
 
     if (tamanho_estoque() < 1)
     {
         printf("Estoque vazio.\n");
-        return;
+        return NULL;
     }
     
     // se o vetor ainda nao tiver sido alocado
@@ -42,7 +42,7 @@ void venda (produto * estoque, produto * vendidos)
     while (i < TAM_MAX_VENDAS)
     {
         printf("Digite o codigo do produto: \n");
-        scanf("%li ", &codigo);
+        scanf("%li", &codigo);
         prod = removeProduto(estoque, codigo);
         vendidos[i] = prod;
  
@@ -54,4 +54,5 @@ void venda (produto * estoque, produto * vendidos)
 
         i++;    
     }
+    return vendidos;
 }

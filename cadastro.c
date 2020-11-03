@@ -23,13 +23,13 @@ void cadastro (produto ** estoque, fornecedores ** cadastro)
 
 	if (x == 1)
 	{
-		cad_fornecedor(*cadastro);
+		* cadastro = cad_fornecedor(*cadastro);
 		printf("\n");
 	}
 
-	else
+	else if (x == 2)
 	{
-		*estoque = cad_produto(*estoque);
+		* estoque = cad_produto(*estoque);
         printf("\n");
 	}
 }
@@ -43,7 +43,7 @@ produto * cad_produto (produto * estoque)
     scanf("%d", &quantidade);
 
     // se o estoque ainda nao tiver sido alocado
-    if (TAM_ATUAL_PRODUTOS == 0)
+    if (TAM_MAX_PRODUTOS == 0)
     {
         estoque =  malloc (quantidade * sizeof(produto));
         TAM_MAX_PRODUTOS = quantidade;
@@ -88,8 +88,9 @@ produto * cad_produto (produto * estoque)
  return(estoque);
 }
 
-/* le fornecedores e insere-os no cadastro de fornecedores*/
-void cad_fornecedor(fornecedores * cadastro)
+/* le fornecedores e insere-os no cadastro de fornecedores
+    retorna o endereco do cadastro */
+fornecedores * cad_fornecedor(fornecedores * cadastro)
 {
 	int i = 0;
     int quantidade;
@@ -100,6 +101,7 @@ void cad_fornecedor(fornecedores * cadastro)
 // Se ja existir um estoque na memoria
     if (tamanho_fornecedores() == 0)
     {   
+        free(cadastro);
         cadastro =  malloc(quantidade * sizeof(fornecedores));    
         TAM_MAX_FORNECEDORES = quantidade;
         TAM_ATUAL_FORNECEDORES = quantidade;
@@ -135,6 +137,7 @@ void cad_fornecedor(fornecedores * cadastro)
         
     }
     printf("Cadastrou %d fornecedor(es)!",i);
+    return cadastro;
 }
 
 // remove um produto a partir de seu codigo e retorna-o caso consiga

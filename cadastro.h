@@ -37,10 +37,10 @@ struct produto_{
 void cadastro (produto ** estoque, fornecedores ** cadastro);
 
 // cadastra um produto no estoque e retorna seu endereço
-produto * cad_produto(produto * estoque);
+produto *  cad_produto(produto * estoque);
 
 // cadastra um fornecedor no estoque
-void cad_fornecedor(fornecedores * cadastro);
+fornecedores * cad_fornecedor(fornecedores * cadastro);
 
 /* Alocação dinâmica */
 // aloca um vetor de n produtos no heap

@@ -11,6 +11,6 @@
 
 // retira produtos do estoque e coloca-os como vendidos
 // imprime na saida padrao caso consiga ou nao
-void venda (produto * estoque, produto * vendas);
+produto * venda (produto * estoque, produto * vendas);
 
 #endif

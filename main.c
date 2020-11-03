@@ -35,7 +35,7 @@ int main()
             break;
 
             case 3:
-                venda (estoque, vendidos);
+                vendidos = venda (estoque, vendidos);
             break;
 
             case 4:
