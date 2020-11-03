@@ -8,13 +8,6 @@ No terminal, digite os comandos:
 
 `make all` para compilar, `make run` para executar, e `make clean` limpa os arquivos gerados pelo compilador.
 
-### Rodando os casos de teste
-
-Utilize os comandos: 
-`make run <casos_teste/1.in`
-`make run <casos_teste/2.in`
-`make run <casos_teste/3.in`
-
 
 ## Arquivos no repositório
 
@@ -26,3 +19,18 @@ Utilize os comandos:
 - `Makefile`: compila os arquivos com auxílio do gcc,
 - `readme.MD`: contém informações sobre este repositório. 
 
+## Casos de teste
+
+Utilize os comandos abaixo para rodar os testes
+`make run <casos_teste/1.in`
+`make run <casos_teste/2.in`
+`make run <casos_teste/3.in`
+
+- 1.in
+Testa a insercao de produtos no estoque
+
+- 2.in
+Testa a inserção de fornecedores
+
+- 3.in
+Testa a operação de venda
