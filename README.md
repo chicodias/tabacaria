@@ -23,14 +23,16 @@ No terminal, digite os comandos:
 
 Utilize os comandos abaixo para rodar os testes
 `make run <casos_teste/1.in`
+
 `make run <casos_teste/2.in`
+
 `make run <casos_teste/3.in`
 
 - 1.in
-Testa a insercao de produtos no estoque
+Testa a inserção de produtos no estoque
 
 - 2.in
-Testa a inserção de fornecedores
+Testa a inserção de fornecedores no cadastro
 
 - 3.in
 Testa a operação de venda
