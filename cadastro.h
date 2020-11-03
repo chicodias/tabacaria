@@ -51,6 +51,7 @@ fornecedores *AlocaFornecedores(int n);
 
 // encontra um codigo e remove-o do vetor, trazendo os elementos apos ele para frente.
 // retorna o produto removido
+// se prod.codigo == 0, não encontrou
 produto removeProduto(produto * estoque, long int codigo);
 
 // imprime o estoque na stdout
@@ -59,7 +60,7 @@ void imprime_estoque(produto * estoque);
 // retorna o tamanho do estoque
 int tamanho_estoque();
 
-// retorna a quant de fornecedores
+// retorna a quant de fornecedores.
 int tamanho_fornecedores();
 
 

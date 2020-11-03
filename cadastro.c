@@ -89,12 +89,12 @@ produto * cad_produto (produto * estoque)
     retorna o endereco do cadastro */
 fornecedores * cad_fornecedor(fornecedores * cadastro)
 {
-	int i = 0;
-    int quantidade;
+	int i = 0, quantidade;
     
     printf("Digite a quantidade de fornecedores a serem cadastrados");
     scanf("%d", &quantidade);
     printf("%d", quantidade);
+
 // Se ja existir um estoque na memoria
     if (tamanho_fornecedores() == 0)
     {   
@@ -122,7 +122,7 @@ fornecedores * cad_fornecedor(fornecedores * cadastro)
             cadastro = realloc (cadastro, (TAM_ATUAL_FORNECEDORES + quantidade) * sizeof(fornecedores));
         }
     }
-    
+    // preenche os fornecedores
 	while(i < tamanho_fornecedores())
     {
         printf("\nDigite o codigo do fornecedor, o nome e a especialidade: \n");
@@ -137,7 +137,8 @@ fornecedores * cad_fornecedor(fornecedores * cadastro)
     return cadastro;
 }
 
-// remove um produto a partir de seu codigo e retorna-o caso consiga
+// remove um produto a partir de seu codigo e retorna-o
+// se prod.codigo == 0 no retorno, nao removeu ninguem.
 produto removeProduto(produto * estoque, long int codigo)
 {
     produto chave = {.codigo = 0};

@@ -55,7 +55,7 @@ int main()
     
     }
     // desaloca os vetores em memória da aplicação
-    //free(estoque);
-    //free(fn);
-    //free(vendidos);
+    free(estoque);
+    free(fn);
+    free(vendidos);
 }

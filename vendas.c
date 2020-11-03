@@ -19,6 +19,7 @@ produto * venda (produto * estoque, produto * vendidos)
     printf("Digite o numero de vendas: \n");
     scanf("%d", &quantidade);
 
+    // nao efetuar a venda caso nao haja estoque
     if (tamanho_estoque() < 1)
     {
         printf("Estoque vazio.\n");
@@ -39,6 +40,7 @@ produto * venda (produto * estoque, produto * vendidos)
         TAM_MAX_VENDAS += quantidade;
     }
     
+    // preenche as vendas
     while (i < TAM_MAX_VENDAS)
     {
         printf("Digite o codigo do produto: \n");
@@ -47,7 +49,7 @@ produto * venda (produto * estoque, produto * vendidos)
         vendidos[i] = prod;
  
         if(prod.codigo == 0)
-            printf("Produto não encontrado. Venda não realizada.\n");
+            printf("Produto não encontrado. \n A venda registrada é inválida.\n");
 
         else
             printf("Registrou a venda com sucesso.\n");     
