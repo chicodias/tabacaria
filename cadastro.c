@@ -7,31 +7,12 @@
 #include "cadastro.h"
 
 /* variaveis globais que controlam o tamanho dos vetores alocados */
-int TAM_MAX_PRODUTOS, TAM_ATUAL_PRODUTOS;
-int TAM_MAX_FORNECEDORES, TAM_ATUAL_FORNECEDORES;
+int TAM_MAX_PRODUTOS = 0, TAM_ATUAL_PRODUTOS = 0;
+int TAM_MAX_FORNECEDORES = 0, TAM_ATUAL_FORNECEDORES = 0;
 
-
-// aloca um vetor de tamanho n no heap e retorna seu endereço
-produto * AlocaProdutos(int n){
-    produto * vet;
-    vet = malloc(n * sizeof(produto));
-    TAM_MAX_PRODUTOS = n;
-    TAM_ATUAL_PRODUTOS = n;    
-    return vet;
-}
-
-// Aloca no heap um vetor de fornecedores de tamanho n e retorna seu endereço
-fornecedores *AlocaFornecedores(int n)
-{
-   fornecedores * vet;
-    vet = malloc(n * sizeof(fornecedores));    
-    TAM_MAX_FORNECEDORES = n;
-    TAM_ATUAL_FORNECEDORES = n; 
-    return vet;
-}
 
 //dependendo da escolha cadastrara produto ou fornecedor
-void cadastro (produto * estoque, fornecedores * cadastro)
+void cadastro (produto ** estoque, fornecedores ** cadastro)
 {
 	int x;
 
@@ -42,19 +23,19 @@ void cadastro (produto * estoque, fornecedores * cadastro)
 
 	if (x == 1)
 	{
-		cad_fornecedor(cadastro);
+		cad_fornecedor(*cadastro);
 		printf("\n");
 	}
 
 	else
 	{
-		cad_produto(estoque);
+		*estoque = cad_produto(*estoque);
         printf("\n");
 	}
 }
 
 /*  lê produtos da entrada padrão e cadastra-os no estoque */
-void cad_produto (produto * estoque)
+produto * cad_produto (produto * estoque)
 {
     int i, quantidade;
 
@@ -62,9 +43,11 @@ void cad_produto (produto * estoque)
     scanf("%d", &quantidade);
 
     // se o estoque ainda nao tiver sido alocado
-    if (estoque == NULL)
+    if (TAM_ATUAL_PRODUTOS == 0)
     {
-        estoque = AlocaProdutos(quantidade);
+        estoque =  malloc (quantidade * sizeof(produto));
+        TAM_MAX_PRODUTOS = quantidade;
+        TAM_ATUAL_PRODUTOS = quantidade;   
         i = 0;
     }
 
@@ -87,7 +70,7 @@ void cad_produto (produto * estoque)
         }
     }
     
-		while(i < TAM_ATUAL_PRODUTOS)
+	while(i < TAM_ATUAL_PRODUTOS)
     {
         printf("\nDigite o código, preço, armazenamento, nome do produto, o tipo, o fornecedor do produto:\n");
 	    scanf ("%li %f %d ", &estoque[i].codigo, &estoque[i].preco, &estoque[i].armazenamento);
@@ -97,8 +80,12 @@ void cad_produto (produto * estoque)
         printf("\n %li %f %d\n", estoque[i].codigo, estoque[i].preco, estoque[i].armazenamento);
         i++;
     }       
-
-    printf("Total de Cadastros feitos: %d.\n Voltando ao menu.\n",quantidade);
+    imprime_estoque(estoque);
+    removeProduto(estoque, 321312102);
+    imprime_estoque(estoque);
+    printf("Total de Cadastros no estoque: %d.\n Voltando ao menu.\n",tamanho_estoque());
+ 
+ return(estoque);
 }
 
 /* le fornecedores e insere-os no cadastro de fornecedores*/
@@ -109,17 +96,20 @@ void cad_fornecedor(fornecedores * cadastro)
     
     printf("Digite a quantidade de fornecedores a serem cadastrados");
     scanf("%d", &quantidade);
+    printf("%d", quantidade);
 // Se ja existir um estoque na memoria
-    if (cadastro == NULL)
-    {
-        cadastro = AlocaFornecedores(quantidade);
+    if (tamanho_fornecedores() == 0)
+    {   
+        cadastro =  malloc(quantidade * sizeof(fornecedores));    
+        TAM_MAX_FORNECEDORES = quantidade;
+        TAM_ATUAL_FORNECEDORES = quantidade;
         i = 0;
     }
     // se o cadastro de fornecedores ja estiver alocado
     else
     {
         // caso haja espaço no vetor, insira no final
-        if(TAM_MAX_FORNECEDORES - TAM_ATUAL_FORNECEDORES > quantidade)
+        if (TAM_MAX_FORNECEDORES - TAM_ATUAL_FORNECEDORES > quantidade)
         {
             i = TAM_ATUAL_FORNECEDORES;
             TAM_ATUAL_FORNECEDORES += quantidade;
@@ -134,13 +124,14 @@ void cad_fornecedor(fornecedores * cadastro)
         }
     }
     
-		while(i < TAM_ATUAL_FORNECEDORES)
+	while(i < tamanho_fornecedores())
     {
         printf("\nDigite o codigo do fornecedor, o nome e a especialidade: \n");
 
         scanf("%li ", &cadastro[i].codigo); 
         fgets (cadastro[i].nome,lim, stdin );
         fgets (cadastro[i].especialidade,lim, stdin );
+        i++;
         
     }
     printf("Cadastrou %d fornecedor(es)!",i);
@@ -156,11 +147,10 @@ produto removeProduto(produto * estoque, long int codigo)
         if(codigo == estoque[i].codigo)
         {
             chave = estoque[i];
+            TAM_ATUAL_PRODUTOS--;
             // reposiciona o resto do vetor
             for (int k = i; k < TAM_ATUAL_PRODUTOS; ++k)
-                estoque[k] = estoque[k+1];
-            
-            TAM_ATUAL_PRODUTOS--;
+                estoque[k] = estoque[k+1];           
         }
     }
     return chave;
@@ -170,4 +160,12 @@ void imprime_estoque(produto * estoque)
 {
     for (int i = 0; i < TAM_ATUAL_PRODUTOS; i++)
         printf("%s \n",estoque[i].nome);
+}
+
+int tamanho_estoque(){
+    return TAM_ATUAL_PRODUTOS;
+}
+
+int tamanho_fornecedores(){
+    return TAM_ATUAL_FORNECEDORES;
 }

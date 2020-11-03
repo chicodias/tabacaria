@@ -34,10 +34,10 @@ struct produto_{
 // funções do programa
 
 //dependendo da escolha cadastrara produto ou fornecedor
-void cadastro (produto * estoque, fornecedores * cadastro);
+void cadastro (produto ** estoque, fornecedores ** cadastro);
 
-// cadastra um produto no estoque
-void cad_produto(produto * estoque);
+// cadastra um produto no estoque e retorna seu endereço
+produto * cad_produto(produto * estoque);
 
 // cadastra um fornecedor no estoque
 void cad_fornecedor(fornecedores * cadastro);
@@ -55,5 +55,13 @@ produto removeProduto(produto * estoque, long int codigo);
 
 // imprime o estoque na stdout
 void imprime_estoque(produto * estoque);
+
+// retorna o tamanho do estoque
+int tamanho_estoque();
+
+// retorna a quant de fornecedores
+int tamanho_fornecedores();
+
+
 
 #endif //cadastro.h

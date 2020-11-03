@@ -7,7 +7,7 @@
 #include "vendas.h"
 
 /* variavel global que controla o tamanho do vetor de produtos vendidos */
-int TAM_MAX_VENDAS;
+int TAM_MAX_VENDAS = 0;
 
 // Realiza a venda de uma quantidade de produtos 
 void venda (produto * estoque, produto * vendidos)
@@ -19,8 +19,14 @@ void venda (produto * estoque, produto * vendidos)
     printf("Digite o numero de vendas: \n");
     scanf("%d ", &quantidade);
 
+    if (tamanho_estoque() < 1)
+    {
+        printf("Estoque vazio.\n");
+        return;
+    }
+    
     // se o vetor ainda nao tiver sido alocado
-    if(vendidos == NULL)
+    if(TAM_MAX_VENDAS == 0)
     {
         vendidos = malloc(quantidade * sizeof (produto));
         i = 0;
@@ -28,7 +34,7 @@ void venda (produto * estoque, produto * vendidos)
     }
     else
     {
-        vendidos = realloc(vendidos, (quantidade + TAM_MAX_VENDAS) * sizeof (produto) );
+        vendidos = realloc(vendidos, (quantidade + TAM_MAX_VENDAS) * sizeof (produto));
         i = TAM_MAX_VENDAS;
         TAM_MAX_VENDAS += quantidade;
     }

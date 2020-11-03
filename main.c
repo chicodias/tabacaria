@@ -14,6 +14,7 @@ int main()
 	char s;
     
     //inicializa os endereços que conterao os produtos e fornecedores
+    // contem o endereco pra primeira pos do vetor respectivo
     produto * estoque = NULL;
     fornecedores * fn = NULL;
     produto * vendidos = NULL;
@@ -25,12 +26,12 @@ int main()
         printf("1. Cadastro \n2. Visualização\n3. Vendas \n4. Sair\n");
 
         scanf("%d", &x);
-
+        
+        // seleção dos modulos
         switch (x)
         {
             case 1:
-                cadastro (estoque, fn);
-                printf("%p", &estoque);
+                cadastro (&estoque, &fn);
             break;
 
             case 3:
@@ -48,9 +49,10 @@ int main()
                 printf("Opção inválida.\n");
             break;
         }
+        imprime_estoque(estoque);
     }
     // desaloca os vetores em memória da aplicação
-    free(estoque);
-    free(fn);
-    free(vendidos);
+    //free(estoque);
+    //free(fn);
+    //free(vendidos);
 }
