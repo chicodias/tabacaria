@@ -64,5 +64,4 @@ int tamanho_estoque();
 // retorna a quant de fornecedores.
 int tamanho_fornecedores();
 
-
 #endif //cadastro.h
