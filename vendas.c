@@ -9,6 +9,11 @@
 /* variavel global que controla o tamanho do vetor de produtos vendidos */
 int TAM_MAX_VENDAS = 0;
 
+int tamanho_vendidos()
+{
+    return TAM_MAX_VENDAS;
+}
+
 // Realiza a venda de uma quantidade de produtos 
 produto * venda (produto * estoque, produto * vendidos)
 {

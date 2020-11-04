@@ -13,4 +13,7 @@
 // imprime na saida padrao caso consiga ou nao
 produto * venda (produto * estoque, produto * vendas);
 
+/* retorna o tamanho das vendas */
+int tamanho_vendidos();
+
 #endif

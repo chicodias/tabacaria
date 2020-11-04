@@ -6,11 +6,12 @@
  */
 #include "cadastro.h"
 #include "vendas.h"
+#include "visualiza.h"
 
 // menu principal da aplicação
 int main()
 {   
-    int x;
+    int x,x1;
 	char s;
     
     //inicializa os endereços que conterao os produtos e fornecedores
@@ -31,11 +32,29 @@ int main()
         switch (x)
         {
             case 1:
-                cadastro (&estoque, &fn);
+                    printf("Digite o que deseja cadastrar: \n");
+                    printf("1.Fornecedor \n2.Produto\n");
+
+                    scanf("%d", &x1);
+
+                    if (x1 == 1)
+                    {
+                        fn = cad_fornecedor(fn);
+                        printf("\n");
+                    }
+
+                    else if (x1 == 2)
+                    {
+                        estoque = cad_produto(estoque);
+                        printf("\n");
+                    }
             break;
             case 2:
-                printf("\n *** Produtos atualmente em estoque:\n");
-                imprime_estoque(estoque);
+                /* inserir 
+                    os 
+                    relatorios */
+                printf("\n *** Produtos vendidos:\n");
+                relatoriodeVendas(vendidos);
             break;
             case 3:
                 vendidos = venda (estoque, vendidos);
@@ -58,4 +77,5 @@ int main()
     free(estoque);
     free(fn);
     free(vendidos);
+    return 0;
 }

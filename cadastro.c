@@ -11,29 +11,6 @@ int TAM_MAX_PRODUTOS = 0, TAM_ATUAL_PRODUTOS = 0;
 int TAM_MAX_FORNECEDORES = 0, TAM_ATUAL_FORNECEDORES = 0;
 
 
-//dependendo da escolha cadastrara produto ou fornecedor
-void cadastro (produto ** estoque, fornecedores ** cadastro)
-{
-	int x;
-
-  	printf("Digite o que deseja cadastrar: \n");
-  	printf("1.Fornecedor \n2.Produto\n");
-
-  	scanf("%d", &x);
-
-	if (x == 1)
-	{
-		* cadastro = cad_fornecedor(*cadastro);
-		printf("\n");
-	}
-
-	else if (x == 2)
-	{
-		* estoque = cad_produto(*estoque);
-        printf("\n");
-	}
-}
-
 /*  lê produtos da entrada padrão e cadastra-os no estoque */
 produto * cad_produto (produto * estoque)
 {
@@ -72,12 +49,12 @@ produto * cad_produto (produto * estoque)
     
 	while(i < TAM_ATUAL_PRODUTOS)
     {
-        printf("\nDigite o código, preço, armazenamento, nome do produto, o tipo, o fornecedor do produto:\n");
-	    scanf ("%li %f %d ", &estoque[i].codigo, &estoque[i].preco, &estoque[i].armazenamento);
+        printf("\nDigite o código, preço de compra, preço de venda, armazenamento, nome do produto, o tipo, o fornecedor do produto:\n");
+	    scanf ("%li %f %f %d ", &estoque[i].codigo, &estoque[i].preco_compra, &estoque[i].preco_venda , &estoque[i].armazenamento);
         fgets (estoque[i].nome, lim, stdin);
 	    fgets (estoque[i].tipo, lim, stdin);
         fgets (estoque[i].fornecedor, lim, stdin);
-        printf("\n %li %f %d\n", estoque[i].codigo, estoque[i].preco, estoque[i].armazenamento);
+        printf("\n %li %f %d\n", estoque[i].codigo, estoque[i].preco_compra, estoque[i].armazenamento);
         i++;
     }       
     printf("Total de Cadastros no estoque: %d.\n Voltando ao menu.\n",tamanho_estoque());

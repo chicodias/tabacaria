@@ -25,7 +25,8 @@ typedef
 struct produto_{
     long int codigo;
     char nome[lim];
-    float preco;
+    float preco_compra;
+    float preco_venda;
     char tipo[lim];
     char fornecedor[lim];
     int armazenamento;
