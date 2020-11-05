@@ -55,13 +55,16 @@ fornecedores *AlocaFornecedores(int n);
 // se prod.codigo == 0, não encontrou
 produto removeProduto(produto * estoque, long int codigo);
 
-// imprime o estoque na stdout
-void imprime_estoque(produto * estoque);
-
 // retorna o tamanho do estoque
 int tamanho_estoque();
 
 // retorna a quant de fornecedores.
 int tamanho_fornecedores();
+
+/* altera um fornecedor */
+void alt_fornecedor (fornecedores *pd);
+
+/* altera um produto */
+void alt_produto(produto *pd);
 
 #endif //cadastro.h

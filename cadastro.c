@@ -134,16 +134,63 @@ produto removeProduto(produto * estoque, long int codigo)
     return chave;
 }
 
-void imprime_estoque(produto * estoque)
-{
-    for (int i = 0; i < TAM_ATUAL_PRODUTOS; i++)
-        printf("%s \n",estoque[i].nome);
-}
-
 int tamanho_estoque(){
     return TAM_ATUAL_PRODUTOS;
 }
 
 int tamanho_fornecedores(){
     return TAM_ATUAL_FORNECEDORES;
+}
+
+
+void alt_produto (produto * pd)
+{
+	long int x;
+	
+    printf("\nDigite o código do produto que alterará: \n");
+
+    scanf("%li", &x);
+    for (int j = 0; j < tamanho_estoque(); j++)
+    { //verifica se o codigo que é buscado é igual ao que já exite no programa
+
+        if (pd[j].codigo == x)
+            {
+                printf ("Digite os novos dados do produto %li. (codigo, armazenamento, preco de compra, preco de venda, nome, tipo e fornecedor)\n", x);
+
+                scanf ("%li %d %f %f ", &pd[j].codigo, &pd[j].armazenamento, &pd[j].preco_compra, &pd[j].preco_venda);
+                fgets (pd[j].nome,lim, stdin );
+                fgets (pd[j].tipo,lim, stdin );
+                fgets (pd[j].fornecedor,lim, stdin );
+
+                printf("\nAlteração realizada\n");
+                return;
+            }
+    }
+            printf("\nProduto não encontrado!\n");
+
+}
+
+void alt_fornecedor (fornecedores *pd)
+{
+	long int x;
+	
+    printf("\nDigite o código do fornecedor que alterará: \n");
+
+    scanf("%li", &x);
+    for (int j = 0; j < tamanho_estoque(); j++)
+    { //verifica se o codigo que é buscado é igual ao que já exite no programa
+
+        if (pd[j].codigo == x)
+        {
+            printf("Digite os novos dados do fornecedor %li. (codigo, nome, especialidade)\n", x);
+
+            scanf ("%li ", &pd[j].codigo);
+            fgets (pd[j].nome,lim, stdin );
+            fgets (pd[j].especialidade,lim, stdin );     
+
+            printf("\nAlteração realizada\n");
+            return;
+        }
+    }
+    printf("\nProduto não encontrado!\n");
 }
