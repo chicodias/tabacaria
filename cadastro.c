@@ -114,26 +114,6 @@ fornecedores * cad_fornecedor(fornecedores * cadastro)
     return cadastro;
 }
 
-// remove um produto a partir de seu codigo e retorna-o
-// se prod.codigo == 0 no retorno, nao removeu ninguem.
-produto removeProduto(produto * estoque, long int codigo)
-{
-    produto chave = {.codigo = 0};
-    for(int i = 0; i < TAM_ATUAL_PRODUTOS; ++i)
-    {
-        // achou o produto
-        if(codigo == estoque[i].codigo)
-        {
-            chave = estoque[i];
-            TAM_ATUAL_PRODUTOS--;
-            // reposiciona o resto do vetor
-            for (int k = i; k < TAM_ATUAL_PRODUTOS; ++k)
-                estoque[k] = estoque[k+1];           
-        }
-    }
-    return chave;
-}
-
 int tamanho_estoque(){
     return TAM_ATUAL_PRODUTOS;
 }
@@ -193,4 +173,25 @@ void alt_fornecedor (fornecedores *pd)
         }
     }
     printf("\nProduto não encontrado!\n");
+}
+
+
+// remove um produto a partir de seu codigo e retorna-o
+// se prod.codigo == 0 no retorno, nao removeu ninguem.
+produto removeProduto(produto * estoque, long int codigo)
+{
+    produto chave = {.codigo = 0};
+    for(int i = 0; i < TAM_ATUAL_PRODUTOS; ++i)
+    {
+        // achou o produto
+        if(codigo == estoque[i].codigo)
+        {
+            chave = estoque[i];
+            TAM_ATUAL_PRODUTOS--;
+            // reposiciona o resto do vetor
+            for (int k = i; k < TAM_ATUAL_PRODUTOS; ++k)
+                estoque[k] = estoque[k+1];           
+        }
+    }
+    return chave;
 }

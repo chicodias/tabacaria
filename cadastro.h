@@ -34,21 +34,12 @@ struct produto_{
 
 // funções do programa
 
-//dependendo da escolha cadastrara produto ou fornecedor
-void cadastro (produto ** estoque, fornecedores ** cadastro);
 
 // cadastra um produto no estoque e retorna seu endereço
 produto *  cad_produto(produto * estoque);
 
 // cadastra um fornecedor no estoque
 fornecedores * cad_fornecedor(fornecedores * cadastro);
-
-/* Alocação dinâmica */
-// aloca um vetor de n produtos no heap
-produto * AlocaProdutos(int n);
-
-//aloca n fornecedores
-fornecedores *AlocaFornecedores(int n);
 
 // encontra um codigo e remove-o do vetor, trazendo os elementos apos ele para frente.
 // retorna o produto removido

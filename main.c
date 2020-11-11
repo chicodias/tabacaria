@@ -63,7 +63,7 @@ int main()
                     else if (x1 == 2)
                     {
                         printf("\n *** Produtos vendidos:\n");
-                        relatoriodeVendas(vendidos);
+                        	relatoriodeVendas(vendidos);
                         printf("\n");
                     }
             break;

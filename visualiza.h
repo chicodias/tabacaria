@@ -1,3 +1,9 @@
+/*
+    Arquivo: visualiza.h 
+    Autor: Filipe
+    Contém os cabeçalhos das rotinas de visualização de relatórios da tabacaria
+*/
+
 #ifndef VISU_H
 #define VISU_H
 
