@@ -36,7 +36,7 @@ struct produto_{
 
 
 // cadastra um produto no estoque e retorna seu endereço
-produto *  cad_produto(produto * estoque);
+void cad_produto(produto ** estoque);
 
 // cadastra um fornecedor no estoque
 fornecedores * cad_fornecedor(fornecedores * cadastro);

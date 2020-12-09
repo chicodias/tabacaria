@@ -12,7 +12,7 @@ int TAM_MAX_FORNECEDORES = 0, TAM_ATUAL_FORNECEDORES = 0;
 
 
 /*  lê produtos da entrada padrão e cadastra-os no estoque */
-produto * cad_produto (produto * estoque)
+void cad_produto (produto ** estoque)
 {
     int i, quantidade;
 
@@ -22,7 +22,7 @@ produto * cad_produto (produto * estoque)
     // se o estoque ainda nao tiver sido alocado
     if (TAM_MAX_PRODUTOS == 0)
     {
-        estoque =  malloc (quantidade * sizeof(produto));
+        * estoque =  malloc (quantidade * sizeof(produto));
         TAM_MAX_PRODUTOS = quantidade;
         TAM_ATUAL_PRODUTOS = quantidade;   
         i = 0;
@@ -43,23 +43,23 @@ produto * cad_produto (produto * estoque)
             i = TAM_ATUAL_PRODUTOS;
             TAM_ATUAL_PRODUTOS += quantidade;
             TAM_MAX_PRODUTOS = TAM_ATUAL_PRODUTOS;
-            estoque = realloc (estoque, (TAM_ATUAL_PRODUTOS + quantidade) * sizeof(produto));
+            * estoque = realloc (estoque, (TAM_ATUAL_PRODUTOS + quantidade) * sizeof(produto));
         }
     }
-    
+    /*  */
 	while(i < TAM_ATUAL_PRODUTOS)
     {
         printf("\nDigite o código, preço de compra, preço de venda, armazenamento, nome do produto, o tipo, o fornecedor do produto:\n");
-	    scanf ("%li %f %f %d ", &estoque[i].codigo, &estoque[i].preco_compra, &estoque[i].preco_venda , &estoque[i].armazenamento);
-        fgets (estoque[i].nome, lim, stdin);
-	    fgets (estoque[i].tipo, lim, stdin);
-        fgets (estoque[i].fornecedor, lim, stdin);
-        printf("\n %li %f %d\n", estoque[i].codigo, estoque[i].preco_compra, estoque[i].armazenamento);
+	    scanf ("%li %f %f %d ", &estoque[i]->codigo, &estoque[i]->preco_compra, &estoque[i]->preco_venda , &estoque[i]->armazenamento);
+        fgets ((*estoque)[i].nome, lim, stdin);
+	    fgets ((*estoque)[i].tipo, lim, stdin);
+        fgets ((*estoque)[i].fornecedor, lim, stdin);
+        printf("\n %li %f %d\n", estoque[i]->codigo, estoque[i]->preco_compra, estoque[i]->armazenamento);
         i++;
     }       
     printf("Total de Cadastros no estoque: %d.\n Voltando ao menu.\n",tamanho_estoque());
  
- return(estoque);
+
 }
 
 /* le fornecedores e insere-os no cadastro de fornecedores

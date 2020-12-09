@@ -7,19 +7,30 @@
 #include "cadastro.h"
 #include "vendas.h"
 #include "visualiza.h"
+#include "arquivos.h"
+
 
 // menu principal da aplicação
 int main()
 {   
+
     int x,x1,x2;
 	char s;
-    
-    //inicializa os endereços que conterao os produtos e fornecedores
-    // contem o endereco pra primeira pos do vetor respectivo
     produto * estoque = NULL;
     fornecedores * fn = NULL;
     produto * vendidos = NULL;
 
+    FILE * fp;
+    char filename[20];
+
+    printf("Digite o nome do arquivo do estoque: ");
+    scanf ("%s", filename);
+
+    estoque = AbreEstoque(filename);
+    
+    //inicializa os endereços que conterao os produtos e fornecedores
+    // contem o endereco pra primeira pos do vetor respectivo
+    
     while(1)
     {
         printf("\t\tMENU\n\n");
@@ -45,7 +56,7 @@ int main()
 
                 else if (x1 == 2)
                 {
-                    estoque = cad_produto(estoque);
+                    cad_produto(&estoque);
                     printf("\n");
                 }
             break;
@@ -94,6 +105,11 @@ int main()
                 if (s == 'S')
                     return 0;
             break;
+            case 6:
+                printf("Digite o nome do arquivo do estoque a ser salvo: ");
+                scanf ("%s", filename);
+                GravaEstoque(estoque, tamanho_estoque(estoque), filename);
+                break;
             default:
                 printf("Opção inválida.\n");
             break;
